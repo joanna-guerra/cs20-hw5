@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset="UTF-8">
+<meta name='viewport' content="width=device-width, initial-scale=1" charset="utf-8">
+
+<body>
+        <h1> Amicable Numbers </h1>
+
+        <form>
+        <input type="number" id="num1" placeholder="First number"> <br> <br>
+        <input type="number" id="num2" placeholder="Second number"> <br> <br>
+        <input type="button" id="btn" value="submit" onclick="call_others();"> <br>
+        </form>
+
+        <p> Results: </p>
+        <div id="amicable_num"></div> 
+        <div id="factors_num"></div>
+
+        <script>  
+    
+        // Purpose: calculate whether or not numbers are amicable; call out all functions 
+        function call_others(){
+
+                num_one = document.getElementById('num1');
+                num_two = document.getElementById('num2');
+
+                myprint(check_amicable());
+                myprint_factors(num_one.value,num_two.value);
+
+        }
+        
+        function check_amicable(){
+
+                let result_one = 0;
+
+                        for (let i = 1; i < num_one.value; i++){
+                                if (num_one.value % i == 0){
+                                        result_one += i;
+                                }
+                        }
+
+                let result_two = 0;
+
+                        for (let j = 1; j < num_two.value; j++){
+                                if (num_two.value % j == 0){
+                                        result_two += j;
+                                }
+                        }
+
+                
+                if (result_one == num_two.value && result_two == num_one.value) {
+                        var amicable = true;
+                } else {
+                        amicable = false;
+                }
+
+                return amicable;
+
+        }
+
+        function myprint(bool_result){
+                if(bool_result == true) {
+                        document.getElementById('amicable_num').innerHTML = "The numbers: " + num_one.value + " and " + num_two.value + " are amicable";
+                } else {
+                        document.getElementById('amicable_num').innerHTML = "The numbers: " + num_one.value + " and " + num_two.value + " are not amicable";
+                }
+        }
+
+        function check_factor(number){
+                const factors = [];
+                var count = 0;
+
+                for (let k = 0; k < number; k++){
+                        if (number % k == 0){
+                                factors[count] = k;
+                                count++;
+                        }
+                }
+
+                return factors;
+
+        }
+
+        function myprint_factors(number_print1,number_print2){
+
+        document.getElementById('factors_num').innerHTML = "The factors of " + number_print1 + " are: " + check_factor(number_print1) + "<br>" + "The factors of " + number_print2 + " are: " + check_factor(number_print2);
+        
+        }
+
+        </script>
+
+<body>
+
+</html>
